@@ -13,33 +13,41 @@ const btnStop = document.querySelector('[data-action = stop]');
 const FIRST_ELEM = 0;
 const LAST_ELEM = colors.indexOf(colors[colors.length - 1]);
 let timerId = null;
-// bodyRef.classList.add('');
-// bodyRef.classList.add('isActive');
+
+btnStart.classList.add('disabled');
+btnStop.classList.add('enabled');
 
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
+
 //_________________________________________________________________
 btnStart.addEventListener('click', startRocket);
-btnStop.addEventListener('click', () => {
-  clearInterval(timerId);
-  btnStart.classList.remove('isActive');
-  btnStart.addEventListener('click', startRocket);
-  btnStart.style.color = 'green';
-  btnStop.style.color = 'red';
-});
+btnStop.addEventListener('click', stopMachine);
 
+//запускаем
 function startRocket() {
-  btnStart.classList.add('isActive');
-  if (btnStart.classList.contains('isActive')) {
-    btnStart.removeEventListener('click', startRocket);
-    btnStart.style.color = 'red';
-    btnStop.style.color = 'green';
-  }
+  btnStart.removeEventListener('click', startRocket);
+
+  btnStart.classList.remove('disabled');
+  btnStart.classList.add('enabled');
+  btnStop.classList.remove('enabled');
+  btnStop.classList.add('disabled');
 
   timerId = setInterval(() => {
     bodyRef.style.backgroundColor =
       colors[randomIntegerFromInterval(FIRST_ELEM, LAST_ELEM)];
     console.log('work');
   }, 700);
+}
+
+// останавливаем
+function stopMachine() {
+  clearInterval(timerId);
+  btnStop.classList.add('enabled');
+  btnStop.classList.remove('disabled');
+  btnStart.classList.add('disabled');
+  btnStart.classList.remove('enabled');
+
+  btnStart.addEventListener('click', startRocket);
 }

@@ -1,0 +1,23 @@
+body {
+  text-align: center;
+  align-items: center;
+}
+
+button[type='button'] {
+  width: 100px;
+  height: 50px;
+  border-radius: 10%;
+
+  border: solid 1px black;
+  font-size: 20px;
+}
+
+.enabled {
+  background-color: tomato;
+  color: black;
+}
+
+.disabled {
+  background-color: greenyellow;
+  color: black;
+}
