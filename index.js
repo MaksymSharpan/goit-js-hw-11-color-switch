@@ -23,19 +23,23 @@ const randomIntegerFromInterval = (min, max) => {
 btnStart.addEventListener('click', startRocket);
 btnStop.addEventListener('click', () => {
   clearInterval(timerId);
-  bodyRef.classList.remove('isActive');
+  btnStart.classList.remove('isActive');
   btnStart.addEventListener('click', startRocket);
+  btnStart.style.color = 'green';
+  btnStop.style.color = 'red';
 });
 
 function startRocket() {
-  bodyRef.classList.add('isActive');
-  if (bodyRef.classList.contains('isActive')) {
+  btnStart.classList.add('isActive');
+  if (btnStart.classList.contains('isActive')) {
     btnStart.removeEventListener('click', startRocket);
+    btnStart.style.color = 'red';
+    btnStop.style.color = 'green';
   }
 
   timerId = setInterval(() => {
     bodyRef.style.backgroundColor =
       colors[randomIntegerFromInterval(FIRST_ELEM, LAST_ELEM)];
     console.log('work');
-  }, 1000);
+  }, 700);
 }
