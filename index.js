@@ -37,5 +37,5 @@ function startRocket() {
     bodyRef.style.backgroundColor =
       colors[randomIntegerFromInterval(FIRST_ELEM, LAST_ELEM)];
     console.log('work');
-  }, 200);
+  }, 1000);
 }
